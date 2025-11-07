@@ -72,8 +72,3 @@ See [trainingModel/MELHORIAS.md](trainingModel/MELHORIAS.md) for details.
 ## 📄 License
 
 MIT License
-
----
-
-**Developed with ❤️ for farmers** | v2.0 - Nov 2025
-
