@@ -463,38 +463,6 @@ def main():
     plot_lrs(history)
     
     # ========================================================================
-    # TEST MODEL
-    # ========================================================================
-    if os.path.exists(TEST_DIR):
-        print("\nTesting model on test set...")
-        
-        test_transform = transforms.Compose([
-            transforms.ToTensor(),
-            transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                               std=[0.229, 0.224, 0.225])
-        ])
-
-        test_dataset = ImageFolder(TEST_DIR, transform=test_transform)
-        test_images = sorted(os.listdir(os.path.join(TEST_DIR, 'test')))
-        
-        # Predict first image
-        img, label = test_dataset[0]
-        plt.figure(figsize=(8, 8))
-        plt.imshow(denormalize(img).permute(1, 2, 0))
-        plt.axis('off')
-        predicted = predict_image(img, model, train_dataset.classes, device)
-        plt.title(f'Predicted: {predicted}')
-        plt.show()
-        
-        # Predict all test images
-        print("\nPredictions for test set:")
-        for i, (img, label) in enumerate(test_dataset):
-            predicted = predict_image(img, model, train_dataset.classes, device)
-            print(f'Image: {test_images[i]}, Predicted: {predicted}')
-    else:
-        print(f"\nTest directory not found at {TEST_DIR}. Skipping testing.")
-    
-    # ========================================================================
     # SAVE MODEL
     # ========================================================================
     print("\nSaving model...")
