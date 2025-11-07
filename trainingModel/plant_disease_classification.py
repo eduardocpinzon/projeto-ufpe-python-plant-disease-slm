@@ -282,7 +282,7 @@ def show_batch(data):
 
 def plot_accuracies(history):
     """Plot accuracy vs epochs"""
-    accuracies = [x['val_accuracy'] for x in history]
+    accuracies = [x['val_accuracy'].cpu() if isinstance(x['val_accuracy'], torch.Tensor) else x['val_accuracy'] for x in history]
     plt.figure(figsize=(10, 6))
     plt.plot(accuracies, '-x')
     plt.xlabel('Epoch')
@@ -295,7 +295,7 @@ def plot_accuracies(history):
 def plot_losses(history):
     """Plot training and validation losses"""
     train_losses = [x.get('train_loss') for x in history]
-    val_losses = [x['val_loss'] for x in history]
+    val_losses = [x['val_loss'].cpu() if isinstance(x['val_loss'], torch.Tensor) else x['val_loss'] for x in history]
     plt.figure(figsize=(10, 6))
     plt.plot(train_losses, '-bx', label='Training')
     plt.plot(val_losses, '-rx', label='Validation')

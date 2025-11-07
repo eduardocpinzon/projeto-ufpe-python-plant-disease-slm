@@ -1,6 +1,7 @@
-# 🌱 AgroScriba - Plant Disease Classifier
+# Plant Disease Classifier 
 
 Deep Learning model to identify plant diseases from leaf images using ResNet-9.
+Based on https://www.kaggle.com/code/atharvaingle/plant-disease-classification-resnet-99-2
 
 ## 🚀 Quick Start
 
@@ -24,6 +25,11 @@ python main.py predict image.jpg
 - **14 plant types** (Apple, Corn, Grape, Tomato, etc.)
 - **70,295 training images**
 - **17,572 validation images**
+
+⚠️ **O dataset não está incluído no repositório devido ao seu tamanho (~3GB)**
+
+**Download direto:**
+- Acesse: https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset
 
 ## ⚡ Features
 
@@ -66,8 +72,3 @@ See [trainingModel/MELHORIAS.md](trainingModel/MELHORIAS.md) for details.
 ## 📄 License
 
 MIT License
-
----
-
-**Developed with ❤️ for farmers** | v2.0 - Nov 2025
-
