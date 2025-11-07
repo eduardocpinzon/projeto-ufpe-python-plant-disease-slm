@@ -1,4 +1,4 @@
-# 🌱 AgroScriba - Plant Disease Classifier
+# Plant Disease Classifier
 
 Deep Learning model to identify plant diseases from leaf images using ResNet-9.
 
