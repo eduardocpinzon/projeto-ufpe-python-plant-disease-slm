@@ -26,6 +26,11 @@ python main.py predict image.jpg
 - **70,295 training images**
 - **17,572 validation images**
 
+⚠️ **O dataset não está incluído no repositório devido ao seu tamanho (~3GB)**
+
+**Download direto:**
+- Acesse: https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset
+
 ## ⚡ Features
 
 - ✅ ResNet-9 architecture (~11M parameters)
