@@ -4,6 +4,7 @@
 **Disciplina:** Deep Learning  
 **Instituição:** UFPE (Universidade Federal de Pernambuco)  
 **Objetivo:** Aplicação prática de técnicas de Deep Learning em problemas reais
+
 **Alunos:**
 Eduardo Pinzon (ecp@cin.ufpe.br)
 Yakmuri Cosme da Silva (ycs@cin.ufpe.br)
