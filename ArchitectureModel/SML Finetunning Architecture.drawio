@@ -1,0 +1,191 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="28.2.7">
+  <diagram name="SLM Training Architecture" id="architecture">
+    <mxGraphModel dx="2095" dy="1148" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="SLM Training Pipeline Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="400" y="30" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="layer1" value="1. CONFIGURATION LAYER" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="80" y="100" width="320" height="180" as="geometry">
+            <mxRectangle x="80" y="100" width="200" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="device" value="Device Detection&#xa;(MPS/CUDA/CPU)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="layer1" vertex="1">
+          <mxGeometry x="20" y="40" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="config" value="TrainingConfig&#xa;(Hyperparameters)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="layer1" vertex="1">
+          <mxGeometry x="170" y="40" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="logging" value="Logging Setup&#xa;(File + Console)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="layer1" vertex="1">
+          <mxGeometry x="95" y="110" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="layer2" value="2. DATA LAYER" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="450" y="100" width="320" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="load_dataset" value="Load Dataset&#xa;(JSON Local)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="layer2" vertex="1">
+          <mxGeometry x="20" y="40" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="validate" value="Validate Fields&#xa;(instruction/response)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="layer2" vertex="1">
+          <mxGeometry x="170" y="40" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="format" value="Format Prompts&#xa;(Phi-3 Style)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="layer2" vertex="1">
+          <mxGeometry x="95" y="110" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="layer3" value="3. MODEL LAYER" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="820" y="100" width="320" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="base_model" value="Load Base Model&#xa;(Phi-3-mini)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#666666;" parent="layer3" vertex="1">
+          <mxGeometry x="20" y="40" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="lora" value="Apply LoRA&#xa;(PEFT Adapters)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#666666;" parent="layer3" vertex="1">
+          <mxGeometry x="170" y="40" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="optimize" value="Memory Optimization&#xa;(FP16 + Checkpointing)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#666666;" parent="layer3" vertex="1">
+          <mxGeometry x="95" y="110" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="layer4" value="4. TRAINING LAYER" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="80" y="340" width="690" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="trainer" value="SFTTrainer&#xa;(TRL Library)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="layer4" vertex="1">
+          <mxGeometry x="30" y="50" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="train_loop" value="Training Loop&#xa;(1 Epoch)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="layer4" vertex="1">
+          <mxGeometry x="210" y="50" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="save" value="Save Model&#xa;(LoRA Adapters)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="layer4" vertex="1">
+          <mxGeometry x="390" y="50" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cleanup" value="Memory Cleanup&#xa;(Cache Clear)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="layer4" vertex="1">
+          <mxGeometry x="280" y="150" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="layer5" value="5. TESTING LAYER (test_model.py)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="820" y="340" width="320" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="tester" value="ModelTester Class" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="layer5" vertex="1">
+          <mxGeometry x="95" y="40" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="inference" value="Direct Inference&#xa;(model.generate())" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="layer5" vertex="1">
+          <mxGeometry x="20" y="100" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="batch_test" value="Batch Testing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="layer5" vertex="1">
+          <mxGeometry x="170" y="100" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" source="config" target="load_dataset" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1_label" value="Config Ready" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="arrow1" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" source="format" target="base_model" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow2_label" value="Dataset Ready" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="arrow2" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;fillColor=#f5f5f5;strokeColor=#666666;" parent="1" source="optimize" target="trainer" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3_label" value="Model Ready" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="arrow3" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" parent="1" source="trainer" target="train_loop" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;" parent="1" source="train_loop" target="save" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeWidth=2;" parent="1" source="save" target="cleanup" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;fillColor=#d5e8d4;strokeColor=#82b366;dashed=1;" parent="1" source="save" target="tester" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow7_label" value="Saved Model" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="arrow7" vertex="1" connectable="0">
+          <mxGeometry x="-0.1" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" value="LEGEND" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="80" y="580" width="1060" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="legend1" value="Configuration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="legend" vertex="1">
+          <mxGeometry x="20" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="legend2" value="Data Processing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="legend" vertex="1">
+          <mxGeometry x="160" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="legend3" value="Model Loading" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="legend" vertex="1">
+          <mxGeometry x="300" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="legend4" value="Training" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="legend" vertex="1">
+          <mxGeometry x="440" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="legend5" value="Testing (Independent)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;" parent="legend" vertex="1">
+          <mxGeometry x="580" y="40" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="legend6" value="Memory: FP16 + Gradient Checkpointing" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="legend" vertex="1">
+          <mxGeometry x="750" y="40" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend7" value="Optimized for: Apple Silicon (MPS)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="legend" vertex="1">
+          <mxGeometry x="750" y="60" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="features" value="KEY FEATURES" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="80" y="730" width="520" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="feat1" value="✓ LoRA Fine-tuning (r=4, alpha=8)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="features" vertex="1">
+          <mxGeometry x="20" y="40" width="240" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="feat2" value="✓ Gradient Checkpointing (Memory Efficient)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="features" vertex="1">
+          <mxGeometry x="20" y="70" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="feat3" value="✓ FP16 Precision Training" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="features" vertex="1">
+          <mxGeometry x="20" y="100" width="240" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="feat4" value="✓ Relative Dataset Paths (Git Compatible)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="features" vertex="1">
+          <mxGeometry x="20" y="130" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="feat5" value="✓ Independent Testing Framework" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="features" vertex="1">
+          <mxGeometry x="20" y="160" width="240" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="feat6" value="✓ Automatic Device Detection (MPS/CUDA/CPU)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="features" vertex="1">
+          <mxGeometry x="260" y="40" width="240" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="feat7" value="✓ Structured Logging (File + Console)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="features" vertex="1">
+          <mxGeometry x="260" y="70" width="240" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="feat8" value="✓ Robust Error Handling" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="features" vertex="1">
+          <mxGeometry x="260" y="100" width="240" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="feat9" value="✓ Memory Cleanup Utilities" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="features" vertex="1">
+          <mxGeometry x="260" y="130" width="240" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="specs" value="TECHNICAL SPECS" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="620" y="730" width="520" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="spec1" value="Model: microsoft/Phi-3-mini-4k-instruct" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Courier New;" parent="specs" vertex="1">
+          <mxGeometry x="20" y="40" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="spec2" value="LoRA Rank: 4 | Alpha: 8 | Dropout: 0.1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Courier New;" parent="specs" vertex="1">
+          <mxGeometry x="20" y="70" width="340" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="spec3" value="Batch Size: 1 | Gradient Accum: 8" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Courier New;" parent="specs" vertex="1">
+          <mxGeometry x="20" y="100" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="spec4" value="Max Seq Length: 512 tokens" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Courier New;" parent="specs" vertex="1">
+          <mxGeometry x="20" y="130" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="spec5" value="Learning Rate: 2e-4 | Weight Decay: 0.001" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Courier New;" parent="specs" vertex="1">
+          <mxGeometry x="20" y="160" width="360" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
