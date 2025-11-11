@@ -1,0 +1,230 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36" version="28.2.9">
+  <diagram name="Plant Disease Classifier - ResNet-9" id="resnet9">
+    <mxGraphModel dx="1257" dy="689" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="2000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Plant Disease Classifier - ResNet-9 Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="350" y="20" width="700" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="input" value="INPUT IMAGE&#xa;RGB 3x256x256" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="40" y="100" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="augment" value="DATA AUGMENTATION&#xa;• Random Crop&#xa;• Horizontal Flip&#xa;• Random Rotation (±10°)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12" parent="1" vertex="1">
+          <mxGeometry x="240" y="100" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="normalize" value="NORMALIZATION&#xa;ImageNet Stats&#xa;Mean: [0.485,0.456,0.406]&#xa;Std: [0.229,0.224,0.225]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11" parent="1" vertex="1">
+          <mxGeometry x="500" y="100" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="block1_container" value="CONV BLOCK 1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=14" parent="1" vertex="1">
+          <mxGeometry x="40" y="240" width="280" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="conv1_1" value="Conv2d(3→64)&#xa;kernel=3x3, pad=1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="block1_container" vertex="1">
+          <mxGeometry x="20" y="40" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bn1_1" value="BatchNorm2d(64)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="block1_container" vertex="1">
+          <mxGeometry x="20" y="90" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="relu1_1" value="ReLU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="block1_container" vertex="1">
+          <mxGeometry x="20" y="130" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="conv1_2" value="Conv2d(64→128)&#xa;kernel=3x3, pad=1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="block1_container" vertex="1">
+          <mxGeometry x="20" y="170" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bn1_2" value="BatchNorm2d(128)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="block1_container" vertex="1">
+          <mxGeometry x="20" y="220" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="relu1_2" value="ReLU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="block1_container" vertex="1">
+          <mxGeometry x="20" y="260" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="res1_container" value="RESIDUAL BLOCK 1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontStyle=1;fontSize=14" parent="1" vertex="1">
+          <mxGeometry x="380" y="240" width="280" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="res1_conv1" value="Conv2d(128→128)&#xa;kernel=3x3, pad=1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="res1_container" vertex="1">
+          <mxGeometry x="20" y="40" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="res1_bn1" value="BatchNorm2d(128)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="res1_container" vertex="1">
+          <mxGeometry x="20" y="90" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="res1_relu1" value="ReLU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="res1_container" vertex="1">
+          <mxGeometry x="20" y="130" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="res1_conv2" value="Conv2d(128→128)&#xa;kernel=3x3, pad=1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="res1_container" vertex="1">
+          <mxGeometry x="20" y="170" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="res1_bn2" value="BatchNorm2d(128)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="res1_container" vertex="1">
+          <mxGeometry x="20" y="220" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="res1_skip" value="SKIP CONNECTION&#xa;out = x + F(x)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#ff6600;fontStyle=1;dashed=1;dashPattern=5 5;" parent="res1_container" vertex="1">
+          <mxGeometry x="20" y="260" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="block2_container" value="CONV BLOCK 2" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=14" parent="1" vertex="1">
+          <mxGeometry x="720" y="240" width="280" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="conv2_1" value="Conv2d(128→256)&#xa;kernel=3x3, pad=1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="block2_container" vertex="1">
+          <mxGeometry x="20" y="40" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bn2_1" value="BatchNorm2d(256)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="block2_container" vertex="1">
+          <mxGeometry x="20" y="90" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="relu2_1" value="ReLU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="block2_container" vertex="1">
+          <mxGeometry x="20" y="130" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="conv2_2" value="Conv2d(256→512)&#xa;kernel=3x3, pad=1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="block2_container" vertex="1">
+          <mxGeometry x="20" y="170" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bn2_2" value="BatchNorm2d(512)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="block2_container" vertex="1">
+          <mxGeometry x="20" y="220" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="relu2_2" value="ReLU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="block2_container" vertex="1">
+          <mxGeometry x="20" y="260" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="res2_container" value="RESIDUAL BLOCK 2" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#b85450;fontStyle=1;fontSize=14" parent="1" vertex="1">
+          <mxGeometry x="1060" y="240" width="280" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="res2_conv1" value="Conv2d(512→512)&#xa;kernel=3x3, pad=1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="res2_container" vertex="1">
+          <mxGeometry x="20" y="40" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="res2_bn1" value="BatchNorm2d(512)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="res2_container" vertex="1">
+          <mxGeometry x="20" y="90" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="res2_relu1" value="ReLU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="res2_container" vertex="1">
+          <mxGeometry x="20" y="130" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="res2_conv2" value="Conv2d(512→512)&#xa;kernel=3x3, pad=1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="res2_container" vertex="1">
+          <mxGeometry x="20" y="170" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="res2_bn2" value="BatchNorm2d(512)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="res2_container" vertex="1">
+          <mxGeometry x="20" y="220" width="240" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="res2_skip" value="SKIP CONNECTION&#xa;out = x + F(x)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#ff6600;fontStyle=1;dashed=1;dashPattern=5 5;" parent="res2_container" vertex="1">
+          <mxGeometry x="20" y="260" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="classifier" value="CLASSIFIER HEAD" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14" parent="1" vertex="1">
+          <mxGeometry x="450" y="640" width="500" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="maxpool" value="MaxPool2d(4x4)&#xa;512x16x16" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="classifier" vertex="1">
+          <mxGeometry x="20" y="40" width="460" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="flatten" value="Flatten&#xa;512x256 = 131,072" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="classifier" vertex="1">
+          <mxGeometry x="20" y="85" width="460" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="dropout" value="Dropout(p=0.2)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="classifier" vertex="1">
+          <mxGeometry x="20" y="130" width="460" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="fc" value="Fully Connected&#xa;131,072 → 38 classes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" parent="classifier" vertex="1">
+          <mxGeometry x="20" y="175" width="460" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="softmax" value="Softmax (Inference)&#xa;Probabilities per class" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="classifier" vertex="1">
+          <mxGeometry x="20" y="225" width="460" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="training" value="TRAINING PIPELINE" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=14" parent="1" vertex="1">
+          <mxGeometry x="10" y="1160" width="1300" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="loss" value="Cross-Entropy Loss" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="training" vertex="1">
+          <mxGeometry x="20" y="40" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="optimizer" value="Adam Optimizer&#xa;lr=0.0001, wd=1e-4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="training" vertex="1">
+          <mxGeometry x="240" y="40" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="scheduler" value="OneCycleLR&#xa;max_lr=0.0001, pct=0.3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="training" vertex="1">
+          <mxGeometry x="460" y="40" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="gradclip" value="Gradient Clipping&#xa;max_norm=1.0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="training" vertex="1">
+          <mxGeometry x="680" y="40" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="checkpoint" value="Model Checkpoint&#xa;Save best model" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="training" vertex="1">
+          <mxGeometry x="900" y="40" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="metrics" value="Metrics Tracking&#xa;Loss + Accuracy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="training" vertex="1">
+          <mxGeometry x="1120" y="40" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="init" value="He Initialization (Conv layers)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cce5ff;strokeColor=#36393d;" parent="training" vertex="1">
+          <mxGeometry x="20" y="110" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="device" value="GPU Acceleration (CUDA)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffccff;strokeColor=#9673a6;" parent="training" vertex="1">
+          <mxGeometry x="340" y="110" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="early_stop" value="Early Stopping (val_loss)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffff99;strokeColor=#d79b00;" parent="training" vertex="1">
+          <mxGeometry x="660" y="110" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dataset" value="Dataset: Google Drive" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ccffcc;strokeColor=#82b366;" parent="training" vertex="1">
+          <mxGeometry x="980" y="110" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="output" value="OUTPUT&#xa;38 Disease Classes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="620" y="1000" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" source="input" target="augment" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" source="augment" target="normalize" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=3;fillColor=#d5e8d4;strokeColor=#82b366;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="normalize" target="block1_container" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=3;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" source="block1_container" target="res1_container" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=3;fillColor=#ffcccc;strokeColor=#b85450;" parent="1" source="res1_container" target="block2_container" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=3;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" source="block2_container" target="res2_container" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=3;fillColor=#ffcccc;strokeColor=#b85450;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="res2_container" target="classifier" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1200" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=3;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" source="classifier" target="output" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=3;fillColor=#e1d5e7;strokeColor=#9673a6;entryX=0.531;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="output" target="training" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="LEGEND" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=14" parent="1" vertex="1">
+          <mxGeometry x="40" y="640" width="360" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" value="Convolutional Layer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="legend" vertex="1">
+          <mxGeometry x="20" y="40" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" value="Batch Normalization" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="legend" vertex="1">
+          <mxGeometry x="190" y="40" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" value="ReLU Activation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="legend" vertex="1">
+          <mxGeometry x="20" y="80" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4" value="Pooling Layer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="legend" vertex="1">
+          <mxGeometry x="190" y="80" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg5" value="Skip Connection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#ff6600;dashed=1;dashPattern=5 5;" parent="legend" vertex="1">
+          <mxGeometry x="20" y="120" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg6" value="Augmentation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="legend" vertex="1">
+          <mxGeometry x="190" y="120" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="key1" value="Key Techniques:" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontStyle=1" parent="legend" vertex="1">
+          <mxGeometry x="20" y="160" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="key2" value="• He Initialization for Conv layers" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;" parent="legend" vertex="1">
+          <mxGeometry x="20" y="180" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="key3" value="• Gradient Clipping (max_norm=1.0)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;" parent="legend" vertex="1">
+          <mxGeometry x="20" y="200" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="key4" value="• OneCycleLR scheduler" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;" parent="legend" vertex="1">
+          <mxGeometry x="20" y="220" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="key5" value="• ImageNet Normalization" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;" parent="legend" vertex="1">
+          <mxGeometry x="20" y="240" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="key6" value="• Dropout (p=0.2) for regularization" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;" parent="legend" vertex="1">
+          <mxGeometry x="20" y="260" width="320" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
