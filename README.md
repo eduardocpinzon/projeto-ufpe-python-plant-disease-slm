@@ -5,6 +5,10 @@
 **Instituição:** UFPE (Universidade Federal de Pernambuco)  
 **Objetivo:** Aplicação prática de técnicas de Deep Learning em problemas reais
 
+**Alunos:**
+Eduardo Pinzon (ecp@cin.ufpe.br)
+Yakmuri Cosme da Silva (ycs@cin.ufpe.br)
+
 
 Este projeto implementa dois modelos de IA para agricultura:
 1. **Classificador de Doenças por Imagem** (CNN - ResNet-9)
